@@ -4,10 +4,6 @@
 #include <sstream>
 #include <algorithm>
 
-#define ARRAY_LENGTH(arr) (sizeof(arr) / sizeof(arr[0])) 
-
-typedef unsigned char uchar;
-
 std::string getConvertedAlphabet(std::string alphabet, std::string keyword, unsigned short digitKey) {
 	unsigned short alphabetLength = alphabet.length();
 	std::string convertedAlphabet(alphabetLength, '0');
