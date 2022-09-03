@@ -127,7 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="CaesarWithKeyword.cpp" />
+    <ClCompile Include="helpers.cpp" />
+    <ClCompile Include="SimpleEncryptionTables.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CaesarWithKeyword.hpp" />
+    <ClInclude Include="helpers.hpp" />
+    <ClInclude Include="SimpleEncryptionTables.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
