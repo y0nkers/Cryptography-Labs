@@ -28,7 +28,10 @@ void SimpleEncryptionTables::encrypt(std::string message, std::string filename) 
 
 void SimpleEncryptionTables::decrypt(std::string encrypted_filename, std::string decrypted_filename) {
 	std::string encrypted_message = getStringFromFile(encrypted_filename);
-	if (encrypted_message == "") return;
+	if (encrypted_message == "") {
+		std::cout << encrypted_filename << " is empty!" << std::endl;
+		exit(-1);
+	}
 
 	unsigned short tableCount = encrypted_message.length() / (rows_ * columns_);
 	unsigned short elementsCount = tableCount * rows_ * columns_;

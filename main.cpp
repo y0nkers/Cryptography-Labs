@@ -2,19 +2,7 @@
 #include "SimpleEncryptionTables.hpp"
 
 int main(int argv, char** argc) {
-	std::ifstream message_file("message.txt");
-	std::stringstream message_buffer;
-	std::string message_string;
-
-	if (!message_file.is_open()) {
-		std::cout << "An error occurred while opening the message file" << std::endl;
-		return -1;
-	}
-	else {
-		message_buffer << message_file.rdbuf();
-		message_string = message_buffer.str();
-		message_file.close();
-	}
+	std::string message_string = getStringFromFile("message.txt");
 
 	std::cout << "What method do you want to use?\n1 - Caesar cipher with keyword.\n2 - Simple encryption tables method.\n";
 	int choice = 0;

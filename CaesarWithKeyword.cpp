@@ -49,16 +49,21 @@ CaesarWithKeyword::CaesarWithKeyword(std::string alphabet_filename, std::string 
 	alphabet_ = getStringFromFile(alphabet_filename);
 	keyword_ = getStringFromFile(keyword_filename);
 
+	if (!isUnique(alphabet_)) {
+		std::cout << "Characters in the alphabet are not unique!" << std::endl;
+		exit(-1);
+	}
+
 	for (char& c : keyword_) {
 		if (!isInAlphabet(c)) {
 			std::cout << "One of the keyword characters is not in the alphabet!" << std::endl;
-			return;
+			exit(-1);
 		}
 	}
 
 	if (!isUnique(keyword_)) {
 		std::cout << "Characters in the keyword are not unique!" << std::endl;
-		return;
+		exit(-1);
 	}
 }
 

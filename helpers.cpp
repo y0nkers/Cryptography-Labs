@@ -8,6 +8,7 @@ std::string getStringFromFile(std::string filename) {
 
 	if (!file.is_open()) {
 		std::cout << "An error occurred while opening " << filename << std::endl;
+		exit(-1);
 	}
 	else {
 		buffer << file.rdbuf();
