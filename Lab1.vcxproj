@@ -131,11 +131,13 @@
     <ClCompile Include="helpers.cpp" />
     <ClCompile Include="SimpleEncryptionTables.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Vigenere.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CaesarWithKeyword.hpp" />
     <ClInclude Include="helpers.hpp" />
     <ClInclude Include="SimpleEncryptionTables.hpp" />
+    <ClInclude Include="Vigenere.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

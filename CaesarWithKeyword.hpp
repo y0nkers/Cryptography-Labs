@@ -10,9 +10,6 @@ private:
 	std::string keyword_;
 	unsigned short digitKey_ = 0;
 
-	bool isUnique(std::string str);
-	bool isInAlphabet(char& c);
-
 public:
 	CaesarWithKeyword(std::string alphabet_filename, std::string keyword_filename, unsigned short key);
 	void encrypt(std::string message, std::string filename);

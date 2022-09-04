@@ -18,3 +18,13 @@ std::string getStringFromFile(std::string filename) {
 	}
 	return str;
 }
+
+/* Check if all characters in string are unique */
+bool isUnique(std::string str) {
+	std::string temp = str;
+	std::sort(temp.begin(), temp.end());
+	return std::unique(temp.begin(), temp.end()) == temp.end();
+}
+
+/* Check if alphabet contains character c */
+bool isInAlphabet(char& c, std::string alphabet) { return alphabet.find(c) != std::string::npos; }

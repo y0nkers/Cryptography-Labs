@@ -7,5 +7,7 @@
 #include <algorithm>
 
 std::string getStringFromFile(std::string filename);
+bool isUnique(std::string str);
+bool isInAlphabet(char& c, std::string alphabet);
 
 #endif // !HELPERS_HPP

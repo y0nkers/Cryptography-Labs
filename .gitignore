@@ -397,5 +397,6 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-decrypted.txt
-encrypted.txt
+# ignore all files in folder, but not the folder itself
+output/*
+!output/.gitkeep
