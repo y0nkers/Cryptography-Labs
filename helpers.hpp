@@ -9,5 +9,6 @@
 std::string getStringFromFile(std::string filename);
 bool isUnique(std::string str);
 bool isInAlphabet(char& c, std::string alphabet);
+int gcd(int a, int b);
 
 #endif // !HELPERS_HPP

@@ -28,3 +28,6 @@ bool isUnique(std::string str) {
 
 /* Check if alphabet contains character c */
 bool isInAlphabet(char& c, std::string alphabet) { return alphabet.find(c) != std::string::npos; }
+
+/* Find Greatest Common Divisor of 2 numbers with Euclidean algorithm */
+int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
