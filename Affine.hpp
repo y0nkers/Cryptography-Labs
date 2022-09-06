@@ -13,6 +13,7 @@ public:
 	Affine(std::string alphabet_filename, unsigned short a, unsigned short b);
 	Affine(std::string alphabet);
 	void encrypt(std::string message, std::string filename);
+	void decrypt(std::string encrypted_filename, std::string decrypted_filename);
 	void convertAlphabet();
 
 	std::string getAlphabet() { return alphabet_; };

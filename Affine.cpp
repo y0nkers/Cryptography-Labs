@@ -30,6 +30,19 @@ void Affine::encrypt(std::string message, std::string filename) {
 	std::cout << "Message successfully encrypted and written to file " << filename << "." << std::endl;
 }
 
+void Affine::decrypt(std::string encrypted_filename, std::string decrypted_filename) {
+	std::string encrypted_message = getStringFromFile(encrypted_filename);
+	std::string decrypted_message = "";
+
+	for (auto&& c : encrypted_message)
+		decrypted_message += alphabet_[convertedAlphabet_.find(c)];
+
+	std::ofstream decrypted_file(decrypted_filename);
+	decrypted_file << decrypted_message;
+	decrypted_file.close();
+	std::cout << "Message successfully decrypted and written to file " << decrypted_filename << "." << std::endl;
+}
+
 void Affine::convertAlphabet() {
 	unsigned short alphabetLength = alphabet_.length();
 	convertedAlphabet_.resize(alphabetLength, '0');

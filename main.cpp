@@ -86,6 +86,7 @@ int main(int argv, char** argc) {
 			affine.setB(b);
 			affine.convertAlphabet();
 			affine.encrypt(message_string, "output\\encrypted_affine.txt");
+			affine.decrypt("output\\encrypted_affine.txt", "output\\decrypted_affine.txt");
 
 		}
 	break;
