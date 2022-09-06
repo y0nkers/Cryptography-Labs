@@ -3,6 +3,45 @@
 #include "Vigenere.hpp"
 #include "Affine.hpp"
 
+// Letter probability distribution statistics in Russian texts
+// 1 prorability for letters Å ¨ and 1 for Ü Ú
+std::unordered_map<char, double> LettersStatistics = {
+	{'À', 0.062},
+	{'Á', 0.014},
+	{'Â', 0.038},
+	{'Ã', 0.013},
+	{'Ä', 0.025},
+	{'Å', 0.072},
+	{'¨', 0.072},
+	{'Æ', 0.007},
+	{'Ç', 0.016},
+	{'È', 0.062},
+	{'É', 0.010},
+	{'Ê', 0.028},
+	{'Ë', 0.035},
+	{'Ì', 0.026},
+	{'Í', 0.053},
+	{'Î', 0.090},
+	{'Ï', 0.023},
+	{'Ð', 0.040},
+	{'Ñ', 0.045},
+	{'Ò', 0.053},
+	{'Ó', 0.021},
+	{'Ô', 0.002},
+	{'Õ', 0.009},
+	{'Ö', 0.004},
+	{'×', 0.012},
+	{'Ø', 0.006},
+	{'Ù', 0.003},
+	{'Ú', 0.014},
+	{'Û', 0.016},
+	{'Ü', 0.014},
+	{'Ý', 0.003},
+	{'Þ', 0.006},
+	{'ß', 0.018},
+	{' ', 0.175}
+};
+
 int main(int argv, char** argc) {
 	std::cout << "What method do you want to use?\n1 - Caesar cipher with keyword.\n2 - Simple encryption tables method.\n3 - Vigenere Cipher.\n4 - Affine Cipher.\n";
 	int choice = 0;
@@ -87,7 +126,7 @@ int main(int argv, char** argc) {
 			affine.convertAlphabet();
 			affine.encrypt(message_string, "output\\encrypted_affine.txt");
 			affine.decrypt("output\\encrypted_affine.txt", "output\\decrypted_affine.txt");
-
+			affine.cryptoanalysis("output\\encrypted_affine.txt", LettersStatistics);
 		}
 	break;
 	}

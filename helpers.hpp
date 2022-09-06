@@ -4,7 +4,11 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+
 #include <algorithm>
+#include <unordered_map>
+#include <vector>
+#include <utility>
 
 std::string getStringFromFile(std::string filename);
 bool isUnique(std::string str);
