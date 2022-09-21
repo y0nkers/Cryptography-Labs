@@ -15,9 +15,17 @@ void SimpleEncryptionTables::encrypt(std::string message, std::string filename) 
 	for (unsigned short i = 0; i < tableCount; i++) {
 		for (unsigned short column = 0; column < columns_; column++) {
 			for (unsigned short row = 0; row < rows_; row++) {
-				encrypted_message[row * columns_ + column] = message[idx++];
+				encrypted_message[(row * columns_ + column) + (i * columns_ * rows_)] = message[idx++];
 			}
 		}
+
+		for (unsigned short row = 0; row < rows_; row++) {
+			for (unsigned short column = 0; column < columns_; column++) {
+				std::cout << encrypted_message[(column + row * columns_) + (i * columns_ * rows_)] << " ";
+			}
+			std::cout << std::endl;
+		}
+		std::cout << std::endl;
 	}
 
 	std::ofstream encrypted_file(filename);
@@ -41,7 +49,7 @@ void SimpleEncryptionTables::decrypt(std::string encrypted_filename, std::string
 	for (unsigned short i = 0; i < tableCount; i++) {
 		for (unsigned short column = 0; column < columns_; column++) {
 			for (unsigned short row = 0; row < rows_; row++) {
-				decrypted_message[idx++] = encrypted_message[row * columns_ + column];
+				decrypted_message[idx++] = encrypted_message[(row * columns_ + column) + (i * columns_ * rows_)];
 			}
 		}
 	}

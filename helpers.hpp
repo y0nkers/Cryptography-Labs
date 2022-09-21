@@ -9,6 +9,7 @@
 #include <unordered_map>
 #include <vector>
 #include <utility>
+#include <bitset>
 
 std::string getStringFromFile(std::string filename);
 bool isUnique(std::string str);

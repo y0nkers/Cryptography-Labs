@@ -131,6 +131,7 @@
     <ClCompile Include="Affine.cpp" />
     <ClCompile Include="CaesarWithKeyword.cpp" />
     <ClCompile Include="helpers.cpp" />
+    <ClCompile Include="LFSR.cpp" />
     <ClCompile Include="SimpleEncryptionTables.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Vigenere.cpp" />
@@ -139,6 +140,7 @@
     <ClInclude Include="Affine.hpp" />
     <ClInclude Include="CaesarWithKeyword.hpp" />
     <ClInclude Include="helpers.hpp" />
+    <ClInclude Include="LFSR.hpp" />
     <ClInclude Include="SimpleEncryptionTables.hpp" />
     <ClInclude Include="Vigenere.hpp" />
   </ItemGroup>

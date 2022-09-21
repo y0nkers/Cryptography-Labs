@@ -84,23 +84,27 @@ void Affine::cryptoanalysis(std::string encrypted_filename, std::unordered_map<c
 			// Calculate difference between statistics
 			double currDif = 0;
 			for (unsigned short i = 0; i < alphabet_.length(); i++) {
-				// One statistic for letters Å ¨, so we have to count their probabilities together
-				if (alphabet_[i] == 'Å') {
+				// One statistic for letters Ð• Ð, so we have to count their probabilities together
+				if (alphabet_[i] == 'Ð•') {
 					currDif += (lettersProbability[i] + lettersProbability[i + 1] - lettersStatistics.find(alphabet_[i])->second) * (lettersProbability[i] + lettersProbability[i + 1] - lettersStatistics.find(alphabet_[i])->second);
 					i += 1;
 					continue;
 				}
-				// Same for letters Ú Ü
-				else if (alphabet_[i] == 'Ú') {
+				// Same for letters Ðª Ð¬
+				else if (alphabet_[i] == 'Ðª') {
 					currDif += (lettersProbability[i] + lettersProbability[i + 2] - lettersStatistics.find(alphabet_[i])->second) * (lettersProbability[i] + lettersProbability[i + 2] - lettersStatistics.find(alphabet_[i])->second);
 					continue;
 				}
 				// Just skip this letter cause we count it before
-				else if (alphabet_[i] == 'Ü') { continue; }
+				else if (alphabet_[i] == 'Ð¬') { continue; }
 				// Default case for all other letters
 				else
 					currDif += (lettersProbability[i] - lettersStatistics.find(alphabet_[i])->second) * (lettersProbability[i] - lettersStatistics.find(alphabet_[i])->second);
 			}
+
+			std::string fragment(15, '0');
+			for (int i = 0; i < 15; i++) fragment[i] = decrypted_message[i];
+			std::cout << "a = " << a << ", b = " << b << ", W = " << currDif << ", " << fragment << std::endl;
 
 			if (firstCalculate) {
 				diffMin = currDif;

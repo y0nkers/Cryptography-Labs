@@ -2,53 +2,55 @@
 #include "SimpleEncryptionTables.hpp"
 #include "Vigenere.hpp"
 #include "Affine.hpp"
+#include "LFSR.hpp"
 
 // Letter probability distribution statistics in Russian texts
-// 1 prorability for letters ≈ ® and 1 for ‹ ⁄
+// 1 prorability for letters –ï –Å and 1 for –¨ –™
 std::unordered_map<char, double> LettersStatistics = {
-	{'¿', 0.062},
-	{'¡', 0.014},
-	{'¬', 0.038},
-	{'√', 0.013},
-	{'ƒ', 0.025},
-	{'≈', 0.072},
-	{'®', 0.072},
-	{'∆', 0.007},
-	{'«', 0.016},
-	{'»', 0.062},
-	{'…', 0.010},
-	{' ', 0.028},
-	{'À', 0.035},
-	{'Ã', 0.026},
-	{'Õ', 0.053},
-	{'Œ', 0.090},
-	{'œ', 0.023},
-	{'–', 0.040},
-	{'—', 0.045},
-	{'“', 0.053},
-	{'”', 0.021},
-	{'‘', 0.002},
-	{'’', 0.009},
-	{'÷', 0.004},
-	{'◊', 0.012},
-	{'ÿ', 0.006},
-	{'Ÿ', 0.003},
-	{'⁄', 0.014},
-	{'€', 0.016},
-	{'‹', 0.014},
-	{'›', 0.003},
-	{'ﬁ', 0.006},
-	{'ﬂ', 0.018},
+	{'–ê', 0.062},
+	{'–ë', 0.014},
+	{'–í', 0.038},
+	{'–ì', 0.013},
+	{'–î', 0.025},
+	{'–ï', 0.072},
+	{'–Å', 0.072},
+	{'–ñ', 0.007},
+	{'–ó', 0.016},
+	{'–ò', 0.062},
+	{'–ô', 0.010},
+	{'–ö', 0.028},
+	{'–õ', 0.035},
+	{'–ú', 0.026},
+	{'–ù', 0.053},
+	{'–û', 0.090},
+	{'–ü', 0.023},
+	{'–†', 0.040},
+	{'–°', 0.045},
+	{'–¢', 0.053},
+	{'–£', 0.021},
+	{'–§', 0.002},
+	{'–•', 0.009},
+	{'–¶', 0.004},
+	{'–ß', 0.012},
+	{'–®', 0.006},
+	{'–©', 0.003},
+	{'–™', 0.014},
+	{'–´', 0.016},
+	{'–¨', 0.014},
+	{'–≠', 0.003},
+	{'–Æ', 0.006},
+	{'–Ø', 0.018},
 	{' ', 0.175}
 };
 
 int main(int argv, char** argc) {
-	std::cout << "What method do you want to use?\n1 - Caesar cipher with keyword.\n2 - Simple encryption tables method.\n3 - Vigenere Cipher.\n4 - Affine Cipher.\n";
+	system("chcp 1251");
+	std::cout << "What method do you want to use?\n1 - Caesar cipher with keyword.\n2 - Simple encryption tables method.\n3 - Vigenere Cipher.\n4 - Affine Cipher.\n5 - LFSR generator.\n";
 	int choice = 0;
 	do {
 		std::cout << "Your choice: ";
 		std::cin >> choice;
-	} while (choice != 1 && choice != 2 && choice != 3 && choice != 4);
+	} while (choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5);
 
 	switch (choice) {
 	case 1:
@@ -66,6 +68,8 @@ int main(int argv, char** argc) {
 			caesar.convertAlphabet();
 			caesar.encrypt(message_string, "output\\encrypted_caesar.txt");
 			caesar.decrypt("output\\encrypted_caesar.txt", "output\\decrypted_caesar.txt");
+			std::cout << caesar.getAlphabet() << std::endl;
+			std::cout << caesar.getConvertedAlpabet() << std::endl;
 		}
 		break;
 	case 2:
@@ -129,7 +133,12 @@ int main(int argv, char** argc) {
 			affine.cryptoanalysis("output\\encrypted_affine.txt", LettersStatistics);
 		}
 	break;
+	case 5:
+		LFSR lfsr("input\\key_lfsr.txt");
+		std::bitset<32> generated = lfsr.generate();
+		std::cout << "First stage generator (LFSR output)" << std::endl << generated << " (" << generated.to_ulong() << ")" << std::endl;
+		//for (int i = generated.size() - 1; i >= 0; --i) std::cout << generated[i];
+		//std::cout << std::endl;
 	}
-
 	return 0;
 }
