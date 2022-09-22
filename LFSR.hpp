@@ -6,10 +6,10 @@
 class LFSR {
 private:
 	std::bitset<17> bits;
-
-	int XOR(int bit1, int bit2);
+	std::bitset<16> relations;
+	int XOR();
 public:
-	LFSR(std::string key_filename);
+	LFSR(std::string key_filename, std::string relations_filename);
 	std::bitset<32> generate();
 };
 

@@ -134,9 +134,9 @@ int main(int argv, char** argc) {
 		}
 	break;
 	case 5:
-		LFSR lfsr("input\\key_lfsr.txt");
+		LFSR lfsr("input\\key_lfsr.txt", "input\\relations_lfsr.txt");
 		std::bitset<32> generated = lfsr.generate();
-		std::cout << "First stage generator (LFSR output)" << std::endl << generated << " (" << generated.to_ulong() << ")" << std::endl;
+		std::cout << std::endl << "First stage generator (LFSR output)" << std::endl << generated << " (" << generated.to_ulong() << ")" << std::endl;
 		//for (int i = generated.size() - 1; i >= 0; --i) std::cout << generated[i];
 		//std::cout << std::endl;
 	}
