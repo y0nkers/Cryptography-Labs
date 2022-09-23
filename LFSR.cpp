@@ -1,5 +1,10 @@
 #include "LFSR.hpp"
 
+LFSR::LFSR() {
+	bits = std::bitset<17>("00000000000000000");
+	relations = std::bitset<16>("0000000000000000");
+}
+
 LFSR::LFSR(std::string key_filename, std::string relations_filename) {
 	std::string key = getStringFromFile(key_filename);
 	if (key.size() != 17) {

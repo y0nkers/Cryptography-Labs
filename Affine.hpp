@@ -14,7 +14,7 @@ public:
 	void encrypt(std::string message, std::string filename);
 	void decrypt(std::string encrypted_filename, std::string decrypted_filename);
 	void convertAlphabet();
-	void cryptoanalysis(std::string encrypted_filename, std::unordered_map<char, double> lettersStatistics);
+	void cryptoanalysis(std::string encrypted_filename);
 
 	std::string getAlphabet() { return alphabet_; };
 	std::string getConvertedAlpabet() { return convertedAlphabet_; };

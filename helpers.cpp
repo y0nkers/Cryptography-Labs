@@ -31,3 +31,16 @@ bool isInAlphabet(char& c, std::string alphabet) { return alphabet.find(c) != st
 
 /* Find Greatest Common Divisor of 2 numbers with Euclidean algorithm */
 int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
+
+/* Check if given number is prime */
+bool isPrime(unsigned long long n) {
+	if (n < 2) return false;
+	if (n == 2) return true;
+	if (n % 2 == 0) return false;
+	for (int i = 3; (i * i) <= n; i += 2)
+		if (n % i == 0) return false;
+	return true;
+}
+
+/* Check if given number is a power of 2 */
+bool isPowerOfTwo(unsigned long long n) { return (n > 0 && ((n & (n - 1)) == 0)); }
