@@ -13,6 +13,7 @@ public:
 	LFSR();
 	LFSR(std::string key_filename, std::string relations_filename);
 	std::bitset<32> generate();
+	LFSR& operator=(const LFSR& other);
 };
 
 #endif // !LFSR_HPP

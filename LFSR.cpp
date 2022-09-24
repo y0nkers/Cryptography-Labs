@@ -12,15 +12,15 @@ LFSR::LFSR(std::string key_filename, std::string relations_filename) {
 		exit(-1);
 	}
 
-	std::string relations = getStringFromFile(relations_filename);
-	if (relations.size() != 16) {
+	std::string rel = getStringFromFile(relations_filename);
+	if (rel.size() != 16) {
 		std::cout << "Error: LFSR relations must must be 16 characters long." << std::endl;
 		exit(-1);
 	}
 
 	try {
 		bits = std::bitset<17>(key);
-		this->relations = std::bitset<16>(relations);
+		relations = std::bitset<16>(rel);
 	}
 	catch (std::exception& e) {
 		std::cout << "Error: invalid key characters" << std::endl;
@@ -38,11 +38,17 @@ int LFSR::XOR() {
 std::bitset<32> LFSR::generate() {
 	std::bitset<32> generated;
 	for (int i = 0; i < 32; i++) {
-		//int left_bit = bits[16] ^ bits[13];
 		int result = XOR();
 		generated[i] = result;
 		bits >>= 1;
 		bits[16] = result;
 	}
 	return generated;
+}
+
+LFSR& LFSR::operator=(const LFSR& other) {
+	if (this == &other) return *this;
+	bits = other.bits;
+	relations = other.relations;
+	return *this;
 }

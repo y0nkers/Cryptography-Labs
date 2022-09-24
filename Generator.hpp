@@ -8,9 +8,6 @@
 // Two-stage pseudo-random number generator. Stage I - Linear Feedback Shift Register, Stage II - Linear Congruential Generator.
 class Generator {
 private:
-	LFSR *lfsr;
-	LCG *lcg;
-
 	// ABCDEFGHIJKLMNOPQRSTUVWXYZ ,.!?-  32 characters total = 5 bits per character
 	std::unordered_map<char, std::string> charactersTable = {
 		{'A', "00000"},
@@ -46,9 +43,16 @@ private:
 		{'?', "11110"},
 		{'-', "11111"}
 	};
+	LFSR *lfsr;
+	LCG *lcg;
+
+	std::string bitsToString(boost::dynamic_bitset<> bits);
+	boost::dynamic_bitset<> stringToBits(std::string str);
+	boost::dynamic_bitset<> getGamma(std::string message);
 public:
 	Generator(LFSR *lfsr, LCG *lcg);
 	void encrypt(std::string message, std::string filename);
+	void decrypt(std::string encrypted_filename, std::string decrypted_filename);
 };
 
 #endif // !GENERATOR_HPP

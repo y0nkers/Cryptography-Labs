@@ -96,7 +96,6 @@ int main(int argv, char** argc) {
 	break;
 	case 5:
 		LFSR lfsr("input\\key_lfsr.txt", "input\\relations_lfsr.txt");
-
 		long long multiplier = 0, increment = 0;
 
 		do {
@@ -114,15 +113,12 @@ int main(int argv, char** argc) {
 		} while (increment < 0 || std::cin.fail());
 
 		LCG lcg(multiplier, increment);
-
 		Generator generator(&lfsr, &lcg);
 		std::string message = getStringFromFile("input\\message_generator.txt");
 		generator.encrypt(message, "output\\encrypted_generator.txt");
-
-		//std::bitset<32> generated = lfsr.generate();
-		//std::cout << std::endl << "First stage generator (LFSR output)" << std::endl << generated << " (" << generated.to_ulong() << ")" << std::endl;
-		//for (int i = generated.size() - 1; i >= 0; --i) std::cout << generated[i];
-		//std::cout << std::endl;
+		// Reinitialize because the state of lfsr changed during encryption
+		lfsr = LFSR("input\\key_lfsr.txt", "input\\relations_lfsr.txt");
+		generator.decrypt("output\\encrypted_generator.txt", "output\\decrypted_generator.txt");
 	}
 	return 0;
 }
