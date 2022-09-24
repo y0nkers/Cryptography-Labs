@@ -1,12 +1,12 @@
 #include "LCG.hpp"
 
 LCG::LCG() {
-	this->modulus = 4294967296;
-	this->multiplier = 1664525;
-	this->increment = 1;
+	modulus = 4294967296;
+	multiplier = 1664525;
+	increment = 1;
 }
 
-LCG::LCG(unsigned long long multiplier, unsigned long long increment, unsigned long long modulus) {
+LCG::LCG(unsigned long long mp, unsigned long long incr, unsigned long long mod) {
 	// Check if multiplier is even
 	if (multiplier % 2 == 0) {
 		std::cout << "Multiplier (a) must be an odd number!";
@@ -25,9 +25,9 @@ LCG::LCG(unsigned long long multiplier, unsigned long long increment, unsigned l
 		exit(-1);
 	}
 
-	this->multiplier = multiplier;
-	this->increment = increment;
-	this->modulus = modulus;
+	multiplier = mp;
+	increment = incr;
+	modulus = mod;
 }
 
 std::bitset<224> LCG::generate(std::bitset<32> input) {

@@ -1,8 +1,8 @@
 #include "Generator.hpp"
 
-Generator::Generator(LFSR *lfsr, LCG *lcg) {
-	this->lfsr = lfsr;
-	this->lcg = lcg;
+Generator::Generator(LFSR *stage1, LCG *stage2) {
+	lfsr = stage1;
+	lcg = stage2;
 }
 
 /* Converts bits to letters using charactersTable map */
@@ -38,6 +38,7 @@ boost::dynamic_bitset<> Generator::stringToBits(std::string str) {
 	return boost::dynamic_bitset<>(str_bits);
 }
 
+/* Get gamma for encrypting a message */
 boost::dynamic_bitset<> Generator::getGamma(std::string message) {
 	int length = message.length() * 5; // Each message character is encoded with 5 bits
 	std::string gamma_str = "";
@@ -55,8 +56,8 @@ boost::dynamic_bitset<> Generator::getGamma(std::string message) {
 void Generator::encrypt(std::string message, std::string filename) {
 	boost::dynamic_bitset<> gamma = getGamma(message);
 	boost::dynamic_bitset<> msg = stringToBits(message);
-	boost::dynamic_bitset<> result(gamma);
-	result.operator^=(msg);
+	boost::dynamic_bitset<> encrypted(gamma);
+	encrypted.operator^=(msg);
 	
 	std::cout << std::endl << "Message to Encrypt: " << std::endl << bitsToString(msg) << std::endl;
 	std::cout << "Generated Gamma:" << std::endl << bitsToString(gamma) << std::endl;
@@ -64,11 +65,11 @@ void Generator::encrypt(std::string message, std::string filename) {
 	std::cout << std::endl << "Message bits: " << std::endl << msg << std::endl;
 	std::cout << "Gamma bits: " << std::endl << gamma << std::endl;
 
-	std::cout << std::endl << "Result of Message XOR Gamma:" << std::endl << result << std::endl;
-	std::cout << "Encrypted message: " << std::endl << bitsToString(result) << std::endl;
+	std::cout << std::endl << "Result of Message XOR Gamma:" << std::endl << encrypted << std::endl;
+	std::cout << "Encrypted message: " << std::endl << bitsToString(encrypted) << std::endl;
 
 	std::ofstream encrypted_file(filename);
-	encrypted_file << bitsToString(result);
+	encrypted_file << bitsToString(encrypted);
 	encrypted_file.close();
 	std::cout << std::endl << "Message successfully encrypted and written to file " << filename << "." << std::endl;
 }
@@ -88,7 +89,7 @@ void Generator::decrypt(std::string encrypted_filename, std::string decrypted_fi
 	std::cout << "Gamma bits: " << std::endl << gamma << std::endl;
 
 	std::cout << std::endl << "Result of Message XOR Gamma:" << std::endl << decrypted << std::endl;
-	std::cout << "Encrypted message: " << std::endl << bitsToString(decrypted) << std::endl;
+	std::cout << "Decrypted message: " << std::endl << bitsToString(decrypted) << std::endl;
 
 	std::ofstream decrypted_file(decrypted_filename);
 	decrypted_file << bitsToString(decrypted);
