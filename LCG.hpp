@@ -12,7 +12,7 @@ private:
 public:
 	LCG();
 	LCG(unsigned long long multiplier, unsigned long long increment, unsigned long long modulus = 4294967296);
-	std::bitset<224> generate(std::bitset<32> input);
+	boost::dynamic_bitset<> generate(std::bitset<32> input, int amount);
 };
 
 #endif // !LCG_HPP
