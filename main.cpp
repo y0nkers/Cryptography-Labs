@@ -6,7 +6,7 @@
 
 int main(int argv, char** argc) {
 	system("chcp 1251");
-	std::cout << "What method do you want to use?\n1 - Caesar cipher with keyword.\n2 - Simple encryption tables method.\n3 - Vigenere Cipher.\n4 - Affine Cipher.\n5 - LFSR generator.\nYour choice: ";
+	std::cout << "What method do you want to use?\n1 - Caesar cipher with keyword.\n2 - Simple encryption tables method.\n3 - Vigenere Cipher.\n4 - Affine Cipher.\n5 - Two-Staged generator (LFSR & LCG).\nYour choice: ";
 	int choice = 0;
 	std::cin >> choice;
 

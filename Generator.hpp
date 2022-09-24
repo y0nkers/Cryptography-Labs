@@ -3,7 +3,6 @@
 
 #include "LFSR.hpp"
 #include "LCG.hpp"
-#include <boost/dynamic_bitset.hpp>
 
 // Two-stage pseudo-random number generator. Stage I - Linear Feedback Shift Register, Stage II - Linear Congruential Generator.
 class Generator {

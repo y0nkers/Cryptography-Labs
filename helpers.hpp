@@ -11,6 +11,7 @@
 #include <vector>
 #include <utility>
 #include <bitset>
+#include <boost/dynamic_bitset.hpp>
 
 std::string getStringFromFile(std::string filename);
 bool isUnique(std::string str);
